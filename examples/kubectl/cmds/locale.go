@@ -1,0 +1,28 @@
+package cmds
+
+var Locales = map[string]string{
+	"create_s":        "Create a resource from a file or from stdin.",
+	"create_l":        createLongDesc,
+	"expose_s":        "使用 replication controller, service, deployment 或者 pod 并暴露它作为一个 新的Kubernetes Service",
+	"expose_l":        "expose long",
+	"run_s":           "在集群中运行一个指定的镜像",
+	"run_l":           "run long",
+	"set_s":           "为 objects 设置一个指定的特征",
+	"set_l":           "set long",
+	"explain_s":       "explain short",
+	"explain_l":       "explain long",
+	"get_s":           "显示一个或更多 resources",
+	"get_l":           "get long",
+	"rollout_s":       "rollout short",
+	"rollout_l":       "rollout long",
+	"certificate_s":   "cc short",
+	"certificate_l":   "cc long",
+	"describe_s":      "describe short",
+	"describe_l":      "describe long",
+	"diff_s":          "diff short",
+	"diff_l":          "diff long",
+	"label_s":         "label short",
+	"label_l":         "label long",
+	"api-resources_s": "api-resources short",
+	"api-resources_l": "api-resources long",
+}
