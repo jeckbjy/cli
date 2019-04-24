@@ -2,32 +2,23 @@ package cli
 
 import (
 	"fmt"
-	"strings"
 )
 
-// Flag arg
+// Flag option of console
 type Flag struct {
-	key      string      // the first name
-	Name     string      // split by comma like "help,h"
-	Value    string      // default value
-	Hint     interface{} // hint type
-	Required bool        // required field
-	Multiple bool        // enable multiple options
-	used     bool        // appear in command line
-	options  []string    // command line option
+	Name     string   // Like 'help' equal --help
+	Short    string   // Like 'h' equal -h
+	Value    string   // default value
+	Param    string   // Like 'path' equal --target=<path>
+	Usage    string   // describe
+	Required bool     // required field
+	Multiple bool     // enable multiple options
+	used     bool     // appear in command line
+	options  []string // command line option
 }
 
 func (f *Flag) Key() string {
-	if f.key == "" {
-		index := strings.Index(f.Name, ",")
-		if index != -1 {
-			f.key = strings.TrimSpace(f.Name[:index])
-		} else {
-			f.key = f.Name
-		}
-	}
-
-	return f.key
+	return f.Name
 }
 
 func (f *Flag) addOption(opt string) error {
@@ -83,4 +74,17 @@ func (f *Flag) GetList() []string {
 // Len return the length of the option
 func (f *Flag) Len() int {
 	return len(f.options)
+}
+
+// FullName reutrn name with param such as --target=<path>
+func (f *Flag) FullName() string {
+	if f.Name == "" {
+		return ""
+	}
+
+	if f.Param != "" {
+		return fmt.Sprintf("%s=<%s>", f.Name, f.Param)
+	}
+
+	return f.Name
 }

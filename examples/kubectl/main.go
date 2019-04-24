@@ -7,15 +7,17 @@ import (
 
 func main() {
 	app := cli.New()
-	help := &cli.HelpBuilder{}
-	help.SetLocale(cmds.Locales)
-	help.AddHeader("kubectl controls the Kubernetes cluster manager.")
-	help.AddHeader("")
-	help.AddHeader("Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/")
-	help.AddHeader("")
+	app.SetLanguage(cmds.Langs)
 
-	help.AddFooter(`Use "kubectl <command> --help" for more information about a given command.`)
-	help.AddFooter(`Use "kubectl options" for a list of global command-line options (applies to all commands).`)
+	app.AddHeader("kubectl controls the Kubernetes cluster manager.\n")
+	app.AddHeader("\n")
+	app.AddHeader("Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/\n")
+	app.AddHeader("\n")
+
+	app.AddFooter(`Use "kubectl <command> --help" for more information about a given command.`)
+	app.AddFooter("\n")
+	app.AddFooter(`Use "kubectl options" for a list of global command-line options (applies to all commands).`)
+	app.AddFooter("\n")
 
 	app.AddGroup("Beginner", "Basic Commands (Beginner):")
 	app.AddGroup("Intermediate", "Basic Commands (Intermediate):")
@@ -26,8 +28,6 @@ func main() {
 	app.AddGroup("Settings", "Settings Commands:")
 	app.AddGroup("Other", "Other Commands:")
 
-	app.Help = help
-	// app.AddFlags(cli.NewFlag())
-	app.AddCommands(cmds.GetCommands()...)
+	app.AddCommands(cmds.GetCommands())
 	app.Run()
 }

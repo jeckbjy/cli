@@ -1,6 +1,6 @@
 package cmds
 
-var Locales = map[string]string{
+var Langs = map[string]string{
 	"create_s":        "Create a resource from a file or from stdin.",
 	"create_l":        createLongDesc,
 	"expose_s":        "使用 replication controller, service, deployment 或者 pod 并暴露它作为一个 新的Kubernetes Service",
